@@ -9,10 +9,11 @@ const PORT = 3000;
 // server 
 app.use("/uploads",express.static(path.join(__dirname,"uploads")));
 
-const storage = multer.diskstorage({
-                
-
-
-})
+const storage = multer.diskStorage({
+                destination :(req,file,cb) => {cb(null,"uploads/");},
+                filename:(req,file,cb) => {
+                  cb(null,Date.now() + path.extname(file.originalname));
+                }  
+                });
 
 
