@@ -33,8 +33,26 @@ app.get("./uploads",(req,res) => {fs.readdir("./uploads",(err,files) => {
                                       <h1>Uploaded Files<h1>
                                       <a> href="/">upload New File</a><hr>
                                   `;
-                                  
-}
+                                  files.forEach(file => {
+const ext = path.extname(file).toLowerCase();
+
+              if ([".jpg",".jpeg",".png",".gif",".webp"].includes(ext)){
+                  html +=`<div style="margin:20px0"> <img src="/uploads/${file}" width="300"><br>
+                             <a href="/uploads/${file}" target="_blank">${file}</a> </div>`;
+            } else {
+                 html +=`<p>
+                             <a href="uploads/${file}" target="_blank">${file}</a>
+                        </p>
+                     `;
+            }
+          });
+
+          res.send(html);
+    });
+
+});
+ 
+app.listen(PORT,() => { console.loglog(`Server running on http://localhost:${PORT}`)});
 
 
 
