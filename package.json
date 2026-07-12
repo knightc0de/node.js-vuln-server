@@ -1,7 +1,7 @@
 {
   "name": "nodejs-vuln-server",
   "version": "1.0.0",
-  "description": "",
+  "description": "The project includes multiple security challenges based on modern attack techniques, covering authentication flaws, access control issues, file upload vulnerabilities etc.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -9,5 +9,13 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs"
+  "type": "commonjs",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/knightc0de/nodejs-vuln-server.git"
+  },
+  "bugs": {
+    "url": "https://github.com/knightc0de/nodejs-vuln-server/issues"
+  },
+  "homepage": "https://github.com/knightc0de/nodejs-vuln-server#readme"
 }

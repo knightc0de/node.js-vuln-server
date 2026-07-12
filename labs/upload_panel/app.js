@@ -20,10 +20,24 @@ const upload = multer({storage});
 
 // home page 
 
-app.get("/",(req,res)) => {
+app.get("/",(req,res) => {
                            res.sendfile(
                             path.join(__dirname,"index.html"));
 });
+
+app.get("./uploads",(req,res) => {fs.readdir("./uploads",(err,files) => { 
+                                  if (err){
+                                    return res.status(500).send("Error reading upload folder");
+                                  }       
+                                  let html = ` 
+                                      <h1>Uploaded Files<h1>
+                                      <a> href="/">upload New File</a><hr>
+                                  `;
+                                  
+}
+
+
+
 
 
 
