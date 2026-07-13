@@ -17,5 +17,9 @@
   "bugs": {
     "url": "https://github.com/knightc0de/nodejs-vuln-server/issues"
   },
-  "homepage": "https://github.com/knightc0de/nodejs-vuln-server#readme"
+  "homepage": "https://github.com/knightc0de/nodejs-vuln-server#readme",
+  "dependencies": {
+    "express": "^5.2.1",
+    "multer": "^2.2.0"
+  }
 }

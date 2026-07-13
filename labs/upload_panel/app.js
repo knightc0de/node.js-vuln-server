@@ -2,7 +2,6 @@ const express = require("express");
 const multer = require("multer");
 const path = require("path");
 const fs = require("fs");
-
 const app = express();
 const PORT = 3000;
 
@@ -21,11 +20,11 @@ const upload = multer({storage});
 // home page 
 
 app.get("/",(req,res) => {
-                           res.sendfile(
+                           res.sendFile(
                             path.join(__dirname,"index.html"));
 });
 
-app.get("./uploads",(req,res) => {fs.readdir("./uploads",(err,files) => { 
+app.get("/uploads",(req,res) => {fs.readdir("/uploads",(err,files) => { 
                                   if (err){
                                     return res.status(500).send("Error reading upload folder");
                                   }       
@@ -52,7 +51,7 @@ const ext = path.extname(file).toLowerCase();
 
 });
  
-app.listen(PORT,() => { console.loglog(`Server running on http://localhost:${PORT}`)});
+app.listen(PORT,() => { console.log(`Server running on http://localhost:${PORT}`)});
 
 
 
