@@ -30,11 +30,27 @@ app.get("/", (req, res) => {
 
 app.post("/upload", upload.single("file"), (req, res) => {
     if (!req.file) {
-        return res.status(400).send("No file uploaded.");
-    }
-    res.send('File uploaded successfully! <a href="/files">View Files</a>');
-});
+        return res.status(400).json({
+            success:false,
+            message:"NO file uploaded"
+        });
+ }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
 app.get("/files", (req, res) => {
     fs.readdir(uploadDir, (err, files) => {
         if (err) {
