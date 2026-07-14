@@ -36,8 +36,8 @@ app.post("/upload", upload.single("file"), (req, res) => {
         });
  }
 
-if (path.extname(req.file.originalname).toLowerCase() !== '.git'){
-    fs.unlikeSync(req.file.path);
+if (path.extname(req.file.originalname).toLowerCase() !== '.gif'){
+    fs.unlinkSync(req.file.path);
     return res.status(400).json({
         success:false,
         message:"Invalid file type . GIF only allowed.!"
