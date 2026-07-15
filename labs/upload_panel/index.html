@@ -183,7 +183,6 @@
         <div class="upload-icon">📁</div>
         <div class="upload-text">Drag & Drop GIF here</div>
         <div class="upload-text" style="font-size: 0.9rem; color: #94a3b8; margin-top: 0.25rem;">or click to browse</div>
-        <input type="file" id="fileInput" accept=".gif">
     </div>
 
     <div class="error-message" id="errorMessage">Invalid file type! Please upload a .gif file.</div>
@@ -272,7 +271,7 @@
         if (!selectedFile) return;
 
         const formData = new FormData();
-        // FIXED: Key field changed to 'file' to match server-side upload.single("file")
+
         formData.append('file', selectedFile); 
 
         submitBtn.disabled = true;
