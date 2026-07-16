@@ -18,19 +18,7 @@ const storage = multer.diskStorage({
         cb(null, uploadDir);
     },
     filename: (req, file,cb) => {
-        let filename = file.originalname;
-        let filepath = path.join(uploadDir, filename);
-
-        if (fs.existsSync(filepath)) {
-
-
-            const ext = path.extname(filename);
-            const base = path.basename(filename, ext);
-        
-            filename = `${base}-${Date.now()}${ext}`;
-        }
-        cb(null,filename);
-
+        cb(null,file.originalname);
     }
 });
 
