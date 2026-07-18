@@ -1,302 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GIF Upload Portal</title>
-    <style>
-        :root {
-            --bg-color: #0f172a;
-            --card-bg: #1e293b;
-            --text-color: #f1f5f9;
-            --accent-color: #8b5cf6;
-            --accent-hover: #7c3aed;
-            --error-color: #ef4444;
-            --success-color: #10b981;
-            --border-color: #334155;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        .portal-container {
-            background-color: var(--card-bg);
-            padding: 2.5rem;
-            border-radius: 1.5rem;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
-            width: 100%;
-            max-width: 500px;
-            text-align: center;
-            border: 1px solid var(--border-color);
-        }
-
-        h1 {
-            margin-bottom: 0.5rem;
-            font-size: 1.8rem;
-            background: linear-gradient(to right, #c084fc, #6366f1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        p {
-            color: #94a3b8;
-            margin-bottom: 2rem;
-            font-size: 0.95rem;
-        }
-
-        .upload-area {
-            border: 2px dashed var(--accent-color);
-            border-radius: 1rem;
-            padding: 3rem 2rem;
-            background-color: rgba(15, 23, 42, 0.5);
-            transition: all 0.3s ease;
-            cursor: pointer;
-            position: relative;
-        }
-
-        .upload-area:hover {
-            background-color: rgba(139, 92, 246, 0.1);
-            border-color: var(--accent-hover);
-        }
-
-        .upload-area.dragover {
-            background-color: rgba(139, 92, 246, 0.2);
-            border-color: var(--accent-color);
-        }
-
-        .upload-area input[type="file"] {
-            display: none;
-        }
-
-        .upload-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: var(--accent-color);
-        }
-
-        .upload-text {
-            font-size: 1.1rem;
-            font-weight: 500;
-        }
-
-        .allowed-types {
-            margin-top: 0.5rem;
-            font-size: 0.85rem;
-            color: #64748b;
-        }
-
-        .file-display {
-            margin-top: 1.5rem;
-            background-color: rgba(15, 23, 42, 0.8);
-            padding: 1rem;
-            border-radius: 0.75rem;
-            display: none; /* Controlled via JS */
-            align-items: center;
-            justify-content: space-between;
-            border: 1px solid var(--border-color);
-        }
-
-        .file-info {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            text-align: left;
-            overflow: hidden;
-        }
-
-        .file-name {
-            font-size: 0.9rem;
-            font-weight: 500;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            max-width: 250px;
-        }
-
-        .remove-btn {
-            background: none;
-            border: none;
-            color: var(--error-color);
-            cursor: pointer;
-            font-size: 1.2rem;
-            padding: 0.5rem;
-            border-radius: 0.5rem;
-            transition: background-color 0.2s;
-        }
-
-        .remove-btn:hover {
-            background-color: rgba(239, 68, 68, 0.1);
-        }
-
-        .error-message {
-            color: var(--error-color);
-            margin-top: 1rem;
-            font-size: 0.9rem;
-            display: none;
-        }
-
-        .submit-btn {
-            margin-top: 2rem;
-            width: 100%;
-            padding: 1rem;
-            background-color: var(--accent-color);
-            color: white;
-            border: none;
-            border-radius: 0.75rem;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-
-        .submit-btn:hover {
-            background-color: var(--accent-hover);
-        }
-
-        .submit-btn:disabled {
-            background-color: #334155;
-            cursor: not-allowed;
-            color: #64748b;
-        }
-    </style>
-</head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GIF Upload Portal</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+overflow-x:hidden;min-height:100vh;padding-top:46px;display:flex;justify-content:center;align-items:center;
+background:
+radial-gradient(circle farthest-side at 0% 50%, #14100a 23.5%, rgba(255,170,0,0) 0) 21px 30px,
+radial-gradient(circle farthest-side at 0% 50%, #1c150c 24%, rgba(240,166,17,0) 0) 19px 30px,
+linear-gradient(#14100a 14%, rgba(240,166,17,0) 0, rgba(240,166,17,0) 85%, #14100a 0),
+linear-gradient(150deg,#14100a 24%,#1c150c 0,#1c150c 26%,transparent 0,transparent 74%,#1c150c 0,#1c150c 76%,#14100a 0),
+linear-gradient(30deg,#14100a 24%,#1c150c 0,#1c150c 26%,transparent 0,transparent 74%,#1c150c 0,#1c150c 76%,#14100a 0),
+linear-gradient(90deg,#1c150c 2%,#14100a 0,#14100a 98%,#1c150c 0) #14100a;
+background-size:40px 60px;
+font-family:"Courier New",monospace;color:#d4c9a8;animation:crt 6s infinite}
+@keyframes crt{93%{opacity:.95}94%,100%,0%{opacity:1}}
+.navbar{position:fixed;top:0;left:0;width:100%;height:46px;background:#1a1108;border-bottom:1px solid #3a2c12}
+.navbar:before{content:"";position:absolute;left:20px;top:17px;width:12px;height:12px;border-radius:50%;background:#ff5f56;box-shadow:20px 0 #ffbd2e,40px 0 #27c93f}
+.navbar:after{content:"root@appist: ~/gif-upload";position:absolute;left:50%;transform:translateX(-50%);top:15px;color:#8a7a52;font-size:12px}
+.portal-container{width:100%;max-width:520px;background:#120d06;border:1px solid #3a2c12;border-radius:8px;padding:2.5rem;box-shadow:0 0 0 1px rgba(255,176,0,.05) inset,0 12px 30px rgba(0,0,0,.6)}
+h1{color:#ffb000;text-align:center;margin-bottom:10px}p{text-align:center;color:#8a7a52}
+.upload-area{margin-top:20px;border:2px dashed #ff8800;border-radius:6px;padding:3rem;text-align:center;background:#1a1108;cursor:pointer}
+.upload-area:hover{background:#21170d}
+.upload-area input{display:none}
+.file-display{display:none;margin-top:20px;padding:12px;border:1px solid #3a2c12;justify-content:space-between}
+.submit-btn{margin-top:20px;width:100%;padding:14px;background:#ff8800;border:none;font-weight:bold;cursor:pointer}
+.submit-btn:disabled{background:#3a2c12;color:#777}
+.error-message{display:none;color:#ff6666;margin-top:10px}
+a{color:#ffb000}
+</style></head>
 <body>
-
+<div class="navbar"></div>
 <div class="portal-container">
-    <h1>GIF Portal</h1>
-    <p>Upload your favorite animated GIFs securely.</p>
-
-    <div class="upload-area" id="dropZone">
-        <div class="upload-icon">📁</div>
-        <div class="upload-text">Drag & Drop GIF here</div>
-        <div class="upload-text" style="font-size: 0.9rem; color: #94a3b8; margin-top: 0.25rem;">or click to browse</div>
-       <input type="file" id="fileInput" accept="image/*,.gif,.jpeg,.png">
-
-    </div>
-
-    <div class="error-message" id="errorMessage">Invalid file type! Please upload a .gif file.</div>
-
-    <div class="file-display" id="fileDisplay">
-        <div class="file-info">
-            <span>🖼️</span>
-            <div class="file-name" id="fileName">file.gif</div>
-        </div>
-        <button class="remove-btn" id="removeBtn">✖</button>
-    </div>
-
-    <button class="submit-btn" id="submitBtn" disabled>Upload GIF</button>
-    <p style="margin-top: 15px;"><a href="/files" style="color: var(--accent-color); text-decoration: none;">View Uploaded Gallery</a></p>
+<h1>GIF Portal</h1>
+<p>Upload your favorite animated GIFs securely.</p>
+<div class="upload-area" id="dropZone">
+<div style="font-size:48px">📁</div>
+<div>Drag & Drop GIF here</div>
+<div>or click to browse</div>
+<input type="file" id="fileInput" accept="image/*,.gif,.jpeg,.png">
 </div>
-
+<div class="error-message" id="errorMessage"></div>
+<div class="file-display" id="fileDisplay"><span id="fileName"></span><button id="removeBtn">✖</button></div>
+<button class="submit-btn" id="submitBtn" disabled>Upload GIF</button>
+<p style="margin-top:15px"><a href="/files">View Uploaded Gallery</a></p>
+</div>
 <script>
-    const dropZone = document.getElementById('dropZone');
-    const fileInput = document.getElementById('fileInput');
-    const fileDisplay = document.getElementById('fileDisplay');
-    const fileNameDisplay = document.getElementById('fileName');
-    const errorMessage = document.getElementById('errorMessage');
-    const removeBtn = document.getElementById('removeBtn');
-    const submitBtn = document.getElementById('submitBtn');
-
-
-    function handleFile(file) {
-    errorMessage.style.display = 'none';
-
-    if (!file) return;
-
-    selectedFile = file;
-
-    fileDisplay.style.display = 'flex';
-    fileNameDisplay.textContent = file.name;
-
-    submitBtn.disabled = false;
+let selectedFile=null;
+const dz=document.getElementById('dropZone'),fi=fileInput,fd=fileDisplay,fn=fileName,rm=removeBtn,sb=submitBtn,err=errorMessage;
+function handleFile(f){if(!f)return;selectedFile=f;fd.style.display='flex';fn.textContent=f.name;sb.disabled=false;}
+dz.onclick=()=>fi.click();
+fi.onchange=e=>handleFile(e.target.files[0]);
+['dragenter','dragover','dragleave','drop'].forEach(ev=>dz.addEventListener(ev,e=>{e.preventDefault();e.stopPropagation();}));
+['dragenter','dragover'].forEach(ev=>dz.addEventListener(ev,()=>dz.classList.add('dragover')));
+['dragleave','drop'].forEach(ev=>dz.addEventListener(ev,()=>dz.classList.remove('dragover')));
+dz.addEventListener('drop',e=>handleFile(e.dataTransfer.files[0]));
+rm.onclick=()=>{selectedFile=null;fi.value='';fd.style.display='none';sb.disabled=true;}
+sb.onclick=()=>{
+const form=new FormData();form.append('file',selectedFile);
+sb.disabled=true;sb.textContent='Uploading...';
+fetch('/upload',{method:'POST',body:form}).then(r=>r.json()).then(d=>{alert(d.message);location.reload();})
+.catch(()=>{err.style.display='block';err.textContent='Upload failed';})
+.finally(()=>{sb.textContent='Upload GIF';});
 }
- 
-dropZone.addEventListener('click', () => fileInput.click());
-
-    fileInput.addEventListener('change', (e) => {
-        if (e.target.files.length > 0) {
-            handleFile(e.target.files[0]);
-        }
-    });
-
-    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-        dropZone.addEventListener(eventName, (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-        }, false);
-    });
-
-    ['dragenter', 'dragover'].forEach(eventName => {
-        dropZone.addEventListener(eventName, () => dropZone.classList.add('dragover'));
-    });
-
-    ['dragleave', 'drop'].forEach(eventName => {
-        dropZone.addEventListener(eventName, () => dropZone.classList.remove('dragover'));
-    });
-
-    dropZone.addEventListener('drop', (e) => {
-        const files = e.dataTransfer.files;
-        if (files.length > 0) {
-            handleFile(files[0]);
-        }
-    });
-
-    removeBtn.addEventListener('click', () => {
-        fileDisplay.style.display = 'none';
-        submitBtn.disabled = true;
-        fileInput.value = '';
-        selectedFile = null;
-    });
-
-    submitBtn.addEventListener('click', () => {
-        if (!selectedFile) return;
-
-        const formData = new FormData();
-
-        formData.append('file', selectedFile); 
-
-        submitBtn.disabled = true;
-        submitBtn.textContent = 'Uploading...';
-
-        fetch('/upload', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                alert(data.message);
-                fileDisplay.style.display = 'none';
-                fileInput.value = '';
-                selectedFile = null;
-            } else {
-                errorMessage.textContent = data.message;
-                errorMessage.style.display = 'block';
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            errorMessage.textContent = 'An error occurred during upload.';
-            errorMessage.style.display = 'block';
-        })
-        .finally(() => {
-            submitBtn.textContent = 'Upload GIF';
-        });
-    });
-</script>
-
-</body>
-</html>
+</script></body></html>
