@@ -25,7 +25,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "index.html"));
+    res.sendFile(path.join(__dirname, "../frontend/index.html"));
 });
 
 app.post("/upload", upload.single("file"), (req, res) => {
@@ -85,5 +85,5 @@ app.get("/files", (req, res) => {
 });
 
 app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
+    console.log(`Server Started on http://localhost:${PORT}`);
 });
