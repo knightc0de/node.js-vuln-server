@@ -11,6 +11,8 @@ if (!fs.existsSync(uploadDir)) {
     fs.mkdirSync(uploadDir);
 }
 
+// 
+
 app.use("/uploads", express.static(uploadDir));
 
 const storage = multer.diskStorage({
@@ -40,7 +42,7 @@ if (path.extname(req.file.originalname).toLowerCase() !== '.gif'){
     fs.unlinkSync(req.file.path);
     return res.status(400).json({
         success:false,
-        message:"Invalid file type . GIF only allowed.!"
+        message:"Invalid file type.GIF only allowed.!"
     });
 }
 
