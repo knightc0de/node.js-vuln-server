@@ -1,4 +1,9 @@
 /**
+ * @file colors.js
+ * @description a file full of ansii escape codes for diffrent colors
+ */
+
+/**
  * ansii codes for colors
  * @namespace
  * @property {string} reset - resets the color to defualt
@@ -9,6 +14,7 @@
  * @property {string} yellow - changes color to yellow
  * @property {string} cyan - changes color to cyan
  * @example
+ * const colors = require('./colors')
  * console.log(`${colors.red}Error:${colors.reset} cannot find user`);
  */
 

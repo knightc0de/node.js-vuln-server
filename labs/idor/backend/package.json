@@ -5,7 +5,8 @@
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon main.js"
+    "dev": "nodemon main.js",
+    "doc": "jsdoc -c jsdoc.json"
   },
   "keywords": [],
   "type": "commonjs",
@@ -13,5 +14,8 @@
     "express": "^5.2.1",
     "morgan": "^1.11.0",
     "nodemon": "^3.1.14"
+  },
+  "devDependencies": {
+    "jsdoc": "^4.0.5"
   }
 }
