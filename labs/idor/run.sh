@@ -3,7 +3,7 @@
 cleanup() {
   echo ""
   echo "stopping all servers"
-  kill $(jobs -p) >2/dev/null
+  kill $(jobs -p) 2>/dev/null
   exit
 }
 
