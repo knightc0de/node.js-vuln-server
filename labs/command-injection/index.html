@@ -14,6 +14,7 @@
 </head>
 <body>
 
+
 <div class="navbar"></div>
 
 <div class="body">
@@ -36,13 +37,11 @@
 
 </div>
 
-<div class="sect">
+
+<section class="sect">
   <article class="art-1">
     
-    <div class="sect-1">
-     
-    </div>
-    
+    <div class="sect-1"></div>
 
     <div class="sect-2">
       
@@ -56,10 +55,137 @@
        <p class="ending">-- By Filra</p>
 
     </div>
+  
   </article>
+</section>
+
+
+<section class="sect">
+  <article class="art-1">
+    <div class="sect-1"></div>
+    <div class="sect-2">
+      <h3 class="section-title">How It Works?</h3>
+      <p>When a user provides normal input like <span class="highlight">8.8.8.8</span> to a ping function, the server executes: <span class="highlight">ping 8.8.8.8</span></p>
+      <p>But if the application fails to validate the input, an attacker can inject: <span class="highlight">8.8.8.8; whoami</span></p>
+      <p>The server now executes both commands, revealing sensitive system information. A single unescaped parameter is all an attacker needs to transform a simple request into full remote code execution.</p>
+      <p class="ending">-- By Filra</p>
+    </div>
+  </article>
+</section>
+
+
+<section class="sect">
+  <article class="art-1">
+    <div class="sect-1"></div>
+    <div class="sect-2">
+      <h3 class="section-title">Types of Command Injection</h3>
+      <p><span class="highlight">Direct Injection:</span> The attacker sees the output of injected commands directly in the application response, making exploitation straightforward and easy to verify.</p>
+      <p><span class="highlight">Blind Injection:</span> No output is visible, but attackers confirm execution through time delays using sleep commands, file creation on accessible directories, or out-of-band DNS requests to their controlled server.</p>
+      <p class="ending">-- By Filra</p>
+    </div>
+  </article>
+</section>
+
+
+<section class="sect">
+  <article class="art-1">
+    <div class="sect-1"></div>
+    <div class="sect-2">
+      <h3 class="section-title">Injection Operators</h3>
+      <p><span class="highlight">;</span> Execute multiple commands sequentially regardless of whether the previous command succeeds or fails.</p>
+      <p><span class="highlight">&&</span> Execute the second command only if the first one succeeds without any errors.</p>
+      <p><span class="highlight">||</span> Execute the second command only if the first one fails, useful for blind injection detection.</p>
+      <p><span class="highlight">|</span> Pipe the output of the first command as input to the second command for chaining.</p>
+      <p class="ending">-- By Filra</p>
+    </div>
+  </article>
+</section>
+
+<!-- SECTION 5: Impact & Risks -->
+<section class="sect">
+  <article class="art-1">
+    <div class="sect-1"></div>
+    <div class="sect-2">
+      <h3 class="section-title">Impact & Risks</h3>
+      <p>The impact of successful OS command injection is <span class="highlight">devastating</span>. Attackers can steal sensitive data, delete critical files, modify system configurations, or gain complete server control through reverse shells.</p>
+      <p>Compromised servers can be used for lateral movement, pivoting to internal networks, installing cryptominers, launching DDoS attacks, or targeting other victims while hiding behind the compromised infrastructure.</p>
+      <p class="ending">-- By Filra</p>
+    </div>
+  </article>
+</section>
+
+<!-- SECTION 6: Real-World Cases -->
+<section class="sect">
+  <article class="art-1">
+    <div class="sect-1"></div>
+    <div class="sect-2">
+      <h3 class="section-title">Real-World Cases</h3>
+      <p><span class="highlight">Log4Shell (CVE-2021-44228):</span> Attackers injected malicious JNDI lookup commands through log messages, forcing vulnerable servers to download and execute remote code.</p>
+      <p><span class="highlight">Shellshock (CVE-2014-6271):</span> A critical Bash vulnerability allowed attackers to execute arbitrary commands through specially crafted environment variables on millions of web servers worldwide.</p>
+      <p class="ending">-- By Filra</p>
+    </div>
+  </article>
+</section>
+
+
+<section class="sect">
+  <article class="art-1">
+    <div class="sect-1"></div>
+    <div class="sect-2">
+      <h3 class="section-title">How to Detect?</h3>
+      <p><span class="highlight">Time-Based:</span> Inject sleep or ping commands with delays. If the server response is delayed by the expected time, blind command injection is confirmed.</p>
+      <p><span class="highlight">Output-Based:</span> Inject commands like whoami, id, or hostname and observe if their output appears in the application response directly.</p>
+      <p><span class="highlight">Out-of-Band:</span> Force the target server to make DNS lookups or HTTP requests to an attacker-controlled domain to exfiltrate data when direct output is not visible.</p>
+      <p class="ending">-- By Filra</p>
+    </div>
+  </article>
+</section>
+
+
+<section class="sect">
+  <article class="art-1">
+    <div class="sect-1"></div>
+    <div class="sect-2">
+      <h3 class="section-title">Prevention Guide</h3>
+      <p><span class="highlight">Avoid system calls</span> entirely when possible. Use built-in library functions or APIs instead of passing user input to the operating system shell.</p>
+      <p><span class="highlight">Validate with whitelists.</span> Only allow known safe characters like alphanumerics and dots. Reject any input containing shell metacharacters.</p>
+      <p><span class="highlight">Run with least privilege.</span> Execute applications under restricted accounts with minimal permissions to limit damage even if injection succeeds.</p>
+      <p class="ending">-- By Filra</p>
+    </div>
+  </article>
+</section>
+
+
+<section class="sect">
+  <article class="art-1">
+    <div class="sect-1"></div>
+    <div class="sect-2">
+      <h3 class="section-title">Testing Tools</h3>
+      <p><span class="highlight">Burp Suite:</span> The industry standard for manual web application penetration testing with powerful intruder and repeater tools for injection testing.</p>
+      <p><span class="highlight">Commix:</span> An automated open-source tool specifically designed to detect and exploit command injection vulnerabilities with various techniques.</p>
+      <p><span class="highlight">OWASP ZAP:</span> A free security scanner that includes automated command injection detection as part of its active scanning capabilities.</p>
+      <p class="ending">-- By Filra</p>
+    </div>
+  </article>
+</section>
+
+
+<section class="sect">
+  <article class="art-1">
+    <div class="sect-1"></div>
+    <div class="sect-2">
+      <h3 class="section-title">Try It Yourself</h3>
+      <p>Use the <span class="highlight">ping input field</span> above to test your skills. Try injecting common operators like semicolon or ampersand followed by system commands to understand how command injection works in practice.</p>
+      <p>Start with simple payloads like <span class="highlight">8.8.8.8; ls</span> or <span class="highlight">8.8.8.8 && whoami</span> and observe the server's response to identify whether the application is vulnerable to OS command injection.</p>
+      <p class="ending">-- By Filra</p>
+    </div>
+  </article>
+</section>
+
 </div>
 
-
+<footer class="footer">
+  <p>&copy; 2026 APPIST Lab. Made by Filra</p>
+</footer>
 </body>
 </html>
-
