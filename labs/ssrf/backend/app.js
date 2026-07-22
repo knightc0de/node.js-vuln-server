@@ -19,7 +19,7 @@ app.use(cors())
 app.use(express.json())
 app.use(morgan('dev'))
 app.use('/api', stockRouter)
-app.use('/api',adminRouter)
+app.use('/',adminRouter)
 /**
  * exports app
  * @module app
