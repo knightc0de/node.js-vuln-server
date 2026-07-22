@@ -70,7 +70,7 @@ function App() {
               <label>CVV</label>
               <div>{user.card?.cvv}</div>
             </div>
-          </div>   {/* Credit Card Component */}
+          </div>
         </div>
         <div className="balance-box">
           <span>Available Balance:</span>
