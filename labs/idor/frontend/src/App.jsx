@@ -10,16 +10,26 @@ function App() {
   const queryParams = new URLSearchParams(window.location.search)
   const id = queryParams.get('id')
 
-  const handleCompleteClick = (e) => { 
+  const handleCompleteClick = async (e) => { 
     const rect = e.target.getBoundingClientRect()
     const x = (rect.left + rect.width / 2) / window.innerWidth
     const y = (rect.top + rect.height / 2) / window.innerHeight
 
-    confetti({
-      particleCount: 80,
-      spread: 60,
-      origin: { x, y }
-    })
+    try {
+      const response = await axios.post(`http://localhost:8080/api/users/${id}/complete`)
+
+      if (response.data.success){
+        confetti({
+          particleCount:80,
+          spread:60,
+          origin:{ x, y }
+        })
+      }
+    } catch (err){
+      const errorMessage = err.response?.data?.error || 'failed to complete challenge'
+      console.error(err) // for debug remove when deployed
+      alert(errorMessage)
+    }
   }
 
 

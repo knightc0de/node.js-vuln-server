@@ -52,6 +52,53 @@ userRouter.get('/:id', async (req, res) => {
 })
 
 /**
+ * POST /api/users/:id/complete
+ * @summary cheat prevention endpoint
+ * @description adds validation
+ *
+ * @route POST /api/users/{id}/complete
+ * @param {Object} req - express request object containing the params
+ * @param {Object} req.params.id - the users id recived from the request
+ * @param {Object} res - the response obj
+ *
+ * @returns {Promise<void>} resolves with json response:
+ * - 200 ok: user obj
+ * - 404 not found: `{ message:"user not found" }` or `{ error:"data not found" }`
+ * - 500 internal server error: `{ error: "server error"}`
+ */
+
+userRouter.post('/:id/complete', async (req, res) =>{
+  try {
+    const id = req.params.id
+    const rawData = await fs.readFile(PATH, 'utf8')
+    const parsedData = JSON.parse(rawData)
+    const users = parsedData.users || []
+    const user = users.find(u => String(u.id) === String(id))
+
+    if (!user){
+      return res.status(404).json({message:"user not found"})
+    }
+
+    if (String(id) == '2'){
+      return res.status(403).json({message:"nice try"})
+    }
+
+    res.json({
+      success:true
+    })
+
+  } catch (err){
+    console.error(err)
+    if (err.code == 'ENOENT'){
+      return res.status(404).json({error:"user not found"})
+    }
+    return res.status(500).json({error:"server error"})
+  }
+})
+
+
+
+/**
  * express router singleton
  * @module controllers/users
  */
