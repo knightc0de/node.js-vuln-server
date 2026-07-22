@@ -57,7 +57,7 @@ body {
 }
 
 .navbar:after {
-  content: "root@secure-bank: ~/portal";
+  content: "root@bank: ~/portal";
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
@@ -121,9 +121,12 @@ h1 {
 .card-number {
   font-size: 1.2rem;
   letter-spacing: 3px;
+  white-space:nowrap;
+  text-wrap:nowrap;
   color: #ffb000;
   margin-bottom: 20px;
   text-align: center;
+  padding-right:40px;
   text-shadow: 0 0 5px rgba(255, 176, 0, 0.3);
 }
 

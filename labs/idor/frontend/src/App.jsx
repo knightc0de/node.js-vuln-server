@@ -43,7 +43,7 @@ function App() {
     }
   }, [id])
 
-  if (loading) return <p className="loader">Loading secure records...</p>
+  if (loading) return <p className="loader">Loading records...</p>
   if (!user) return <p className="error">Error: Could not find user record</p>
   
   
